@@ -1,6 +1,6 @@
-8chan/vichan Python Library
+Vichan Python Library
 ===========================
-The Bibliotheca Anonoma's **complete Python Wrapper for the 8chan API.**
+The Bibliotheca Anonoma's **complete Python Wrapper for the Vichan API.**
 Uses requests, respects if-modified-since headers on updating threads.
 Caches thread objects. Fun stuff.
 
@@ -9,12 +9,12 @@ using a Python script._
 
 `Hosted Documentation <http://py8chan.readthedocs.org/en/latest/index.html>`_
 
-`Github Repository <https://github.com/bibanon/py8chan>`_
+`Github Repository <https://github.com/bibanon/pyvichan>`_
 
 You can install this library `straight from
-PyPi <https://pypi.python.org/pypi/py8chan>`_ with::
+PyPi <https://pypi.python.org/pypi/pyvichan>`_ with::
 
-    pip install py8chan
+    pip install pyvichan
 
 
 **Getting Help**
@@ -22,7 +22,7 @@ PyPi <https://pypi.python.org/pypi/py8chan>`_ with::
 If you want help, or you have some trouble using this library, our primary IRC channel
 is `#bibanon on irc.rizon.net <http://qchat2.rizon.net/?channels=bibanon>`_. Simply head
 in there and talk to dan or antonizoon. Otherwise, you can put a issue on our `Github
-Issue Tracker <https://github.com/bibanon/py8chan>`_ and we'll respond as soon as
+Issue Tracker <https://github.com/bibanon/pyvichan>`_ and we'll respond as soon as
 we can!
 
 --------
@@ -32,8 +32,8 @@ Usage
 
 .. code:: python
 
-    import py8chan
-    b = py8chan.Board('b')
+    import pyvichan
+    b = pyvichan.Board('b')
     thread = b.get_thread(423491034)
 
     print(thread)
@@ -48,7 +48,7 @@ Usage
 Documentation
 -------------
 
-This library mostly extends the classes of `BASC-py4chan <https://github.com/bibanon/BASC-py4chan>`_, but has some differences. See the py8chan documentation for more info.
+This library mostly extends the classes of `BASC-py4chan <https://github.com/bibanon/BASC-py4chan>`_, but has some differences. There are some, but few diffrerences between py8chan and pyvichan. For now, refer to the py8chan documentation for more info.
 
 `py8chan Documentation <http://py8chan.readthedocs.org/en/latest/index.html>`_
 
