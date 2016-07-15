@@ -1,6 +1,6 @@
 # example6-download-thread.py - download json and all full-size images from a thread
 from __future__ import print_function
-import py8chan
+import pyvichan
 import sys
 import os
 import requests
@@ -48,7 +48,7 @@ def main():
     thread_id = sys.argv[2]
     
     # grab the first thread on the board by checking first page
-    board = py8chan.Board(board_name)
+    board = pyvichan.Board(board_name)
     thread = board.get_thread(thread_id)
     
     # create folders according to chan.arc standard
@@ -57,7 +57,7 @@ def main():
     mkdirs(images_path)
 
     # archive the thread JSON
-    url_builder = py8chan.Url(board_name)
+    url_builder = pyvichan.Url(board_name)
     json_url = url_builder.thread_api_url(thread_id)
     print(url_builder.thread_api_url(thread_id))
     download_json(os.path.join(path, "%s.json" % thread_id), json_url)

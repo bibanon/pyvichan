@@ -1,6 +1,6 @@
 # credits to Anarov for improved example.py
 from __future__ import print_function
-import py8chan
+import pyvichan
 
 def main():
     if len(sys.argv) != 3:
@@ -10,7 +10,7 @@ def main():
               % sys.argv[0])
         return
 
-    board = py8chan.Board(sys.argv[1])
+    board = pyvichan.Board(sys.argv[1])
     thread = board.get_thread(int(sys.argv[2]))
     for f in thread.files():
         print(f)

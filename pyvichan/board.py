@@ -6,6 +6,9 @@ from . import __version__
 from .thread import Thread
 from .url import Url
 
+# default site URL
+_SITE_URL = '8ch.pl'
+
 # cached metadata for boards
 _metadata = {}
 
@@ -54,6 +57,7 @@ def get_boards(board_name_list, *args, **kwargs):
     return [Board(name, *args, **kwargs) for name in board_name_list]
 
 
+# TODO: Fix this board lister for vichan
 def get_all_boards(*args, **kwargs):
     """Returns every board on 4chan.
 
@@ -62,10 +66,11 @@ def get_all_boards(*args, **kwargs):
     """
     # Use https based on how the Board class instances are to be instantiated
     https = kwargs.get('https', args[1] if len(args) > 1 else False)
+    #site_url = kwargs.get('site_url', args[1] if len(args) > 1 else _SITE_URL)
 
     # Dummy URL generator, only used to generate the board list which doesn't
     # require a valid board name
-    url_generator = Url(None, https)
+    url_generator = Url(None, https, site_url = site_url)
     _fetch_boards_metadata(url_generator)
     return get_boards(_metadata.keys(), *args, **kwargs)
 
@@ -80,8 +85,9 @@ class Board(object):
         is_worksafe (bool): Whether this board is worksafe.
         page_count (int): How many pages this board has.
         threads_per_page (int): How many threads there are on each page.
+        site_url (str): User defined site URL of a site using the infinity/Vichan engine, such as '8ch.net' or '8ch.pl'
     """
-    def __init__(self, board_name, https=False, session=None):
+    def __init__(self, board_name, https=False, site_url=_SITE_URL ,session=None):
         """Creates a :mod:`basc_py4chan.Board` object.
 
         Args:
@@ -92,7 +98,8 @@ class Board(object):
         self._board_name = board_name
         self._https = https
         self._protocol = 'https://' if https else 'http://'
-        self._url = Url(board=board_name, https=self._https)
+        self._url = Url(board=board_name, https=self._https, site_url=site_url)
+        self._site_url = site_url
 
         self._requests_session = session or requests.session()
         self._requests_session.headers['User-Agent'] = 'py-4chan/%s' % __version__
@@ -255,6 +262,11 @@ class Board(object):
         """Remove everything currently stored in our cache."""
         self._thread_cache.clear()
 
+    # root site URL provided by the user, such as `8ch.pl`
+    @property
+    def site_url(self):
+        return self._site_url
+
     @property
     def name(self):
         return self._board_name
@@ -262,21 +274,21 @@ class Board(object):
     """8chan uses a completely different catalog system. We will have to disable these board information features until we manage to figure it out."""
     @property
     def title(self):
-        raise AttributeError( "'py8chan.Board' object has no attribute 'title'" )
+        raise AttributeError( "'pyvichan.Board' object has no attribute 'title'" )
     
     @property
     def is_worksafe(self):
-        raise AttributeError( "'py8chan.Board' object has no attribute 'is_worksafe'" )
+        raise AttributeError( "'pyvichan.Board' object has no attribute 'is_worksafe'" )
     
-    # py8chan does not use page_count variable, unlike BASC-py4chan
+    # pyvichan does not use page_count variable, unlike BASC-py4chan
     @property
     def page_count(self):
-        raise AttributeError( "'py8chan.Board' object has no attribute 'page_count'" )
+        raise AttributeError( "'pyvichan.Board' object has no attribute 'page_count'" )
     
-    # py8chan does not use threads_per_page variable, unlike BASC-py4chan
+    # pyvichan does not use threads_per_page variable, unlike BASC-py4chan
     @property
     def threads_per_page(self):
-        raise AttributeError( "'py8chan.Board' object has no attribute 'threads_per_page'" )
+        raise AttributeError( "'pyvichan.Board' object has no attribute 'threads_per_page'" )
 
     @property
     def https(self):

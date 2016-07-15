@@ -1,7 +1,7 @@
 # credits to Anarov for improved example.py
-import py8chan
+import pyvichan
 
-b = py8chan.Board('b')
+b = pyvichan.Board('b')
 threads = b.get_threads()
 print("Got %i threads" % len(threads))
 first_thread = threads[0]

@@ -9,7 +9,7 @@ class File(object):
     """ Represents File objects and their thumbnails.
     
     Constructor:
-        post (py8chan.Post) - parent Post object.
+        post (pyvichan.Post) - parent Post object.
         data (dict) - The post or extra_files dict from the 8chan API.
     
     Attributes:
@@ -30,7 +30,7 @@ class File(object):
     def __init__(self, post, data):
         self._post = post
         self._data = data
-        self._url = Url(board=self._post._thread._board.name, https=self._post._thread._board.https)       # 8chan URL generator
+        self._url = Url(board=self._post._thread._board.name, https=self._post._thread._board.https, site_url=self._post._thread._board.site_url)       # vichan URL generator
 
     @property
     def file_md5(self):
@@ -77,7 +77,7 @@ class File(object):
     # (May Change) 8chan/vichan does not inform you of deleted files
     @property
     def file_deleted(self):
-        raise AttributeError("'py8chan.File' object has no attribute 'file_deleted'")
+        raise AttributeError("'pyvichan.File' object has no attribute 'file_deleted'")
 
     @property
     def thumbnail_width(self):

@@ -1,10 +1,10 @@
 # example4-extrafiles.py - get info about all files in first thread
 
-import py8chan
+import pyvichan
 
 def main():
     # grab the first thread on the board by checking first page
-    v = py8chan.Board('v')
+    v = pyvichan.Board('v')
     threads = v.get_threads()
     print("Got %i threads" % len(threads))
 

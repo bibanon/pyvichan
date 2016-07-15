@@ -1,13 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# default site URL
+_SITE_URL = '8ch.pl'
+
 # 8chan URL generator. Inherit and override this for derivative classes  (e.g. 420chan API, 8chan/vichan API)
 class Url(object):
     # default value for board in case user wants to query board list
-    def __init__(self, board, https=False):
+    def __init__(self, board, https=False, site_url=_SITE_URL):
         self._board = board
         self._protocol = 'https://' if https else 'http://'
-        self._site_url = "8ch.net"
+        self._site_url = site_url
+        #self._site_url = "8ch.pl"
+        
         
         # Examples
         # Site - http://8ch.net/

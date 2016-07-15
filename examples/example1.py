@@ -1,10 +1,10 @@
 # credits to Anarov for improved example.py
 from __future__ import print_function
-import py8chan
+import pyvichan
 
 def main():
     # grab the first thread on the board by checking first page
-    board = py8chan.Board('v')
+    board = pyvichan.Board('v')
     all_thread_ids = board.get_all_thread_ids()
     first_thread_id = all_thread_ids[0]
     thread = board.get_thread(first_thread_id)

@@ -6,7 +6,6 @@ from .url import Url
 from .util import clean_comment_body
 from .file import File
 
-
 class Post(object):
     """Represents a 4chan post.
 
@@ -39,7 +38,7 @@ class Post(object):
     def __init__(self, thread, data):
         self._thread = thread
         self._data = data
-        self._url = Url(board=self._thread._board.name, https=thread.https)        # 4chan URL generator
+        self._url = Url(board=self._thread._board.name, https=thread.https, site_url=self._thread._board.site_url)        # 4chan URL generator
         
         # add file objects if they exist
         if self.has_file:
@@ -58,7 +57,7 @@ class Post(object):
     # (May Change) 8chan/vichan does not use administrative IDs
     @property
     def poster_id(self):
-        raise AttributeError( "'py8chan.Post' object has no attribute 'poster_id'" )
+        raise AttributeError( "'pyvichan.Post' object has no attribute 'poster_id'" )
 
     @property
     def name(self):
@@ -139,12 +138,12 @@ class Post(object):
     # 8chan/vichan does not use semantic urls
     @property
     def semantic_url(self):
-        raise AttributeError( "'py8chan.Post' object has no attribute 'semantic_url'" )
+        raise AttributeError( "'pyvichan.Post' object has no attribute 'semantic_url'" )
     
     # 8chan/vichan does not use semantic slugs
     @property
     def semantic_slug(self):
-        raise AttributeError( "'py8chan.Post' object has no attribute 'semantic_slug'" )
+        raise AttributeError( "'pyvichan.Post' object has no attribute 'semantic_slug'" )
 
     def __repr__(self):
         return '<Post /%s/%i#%i, has_file: %r, has_extra_files: %r>' % (

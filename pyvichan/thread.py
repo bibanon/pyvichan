@@ -3,16 +3,15 @@
 from .post import Post
 from .url import Url
 
-
 class Thread(object):
     """Represents a thread.
 
     Attributes:
         closed (bool): Whether the thread has been closed.
         sticky (bool): Whether this thread is a 'sticky'.
-        topic (:class:`py8chan.Post`): Topic post of the thread, the OP.
-        posts (list of :class:`py8chan.Post`): List of all posts in the thread, including the OP.
-        all_posts (list of :class:`py8chan.Post`): List of all posts in the thread, including the OP and any omitted posts.
+        topic (:class:`pyvichan.Post`): Topic post of the thread, the OP.
+        posts (list of :class:`pyvichan.Post`): List of all posts in the thread, including the OP.
+        all_posts (list of :class:`pyvichan.Post`): List of all posts in the thread, including the OP and any omitted posts.
         url (string): URL of the thread, not including semantic slug.
         
 	Undefined Attributes (Not implemented in 8chan API. Do not use.):
@@ -23,7 +22,7 @@ class Thread(object):
     """
     def __init__(self, board, id):
         self._board = board
-        self._url = Url(board=board.name, https=board.https)       # 8chan URL generator
+        self._url = Url(board=board.name, https=board.https, site_url=board.site_url)       # 8chan URL generator
         self.id = self.number = self.num = self.no = id
         self.topic = None
         self.replies = []
@@ -142,7 +141,7 @@ class Thread(object):
                     yield item.thumbnail_fname
 
     def file_objects(self):
-        """Returns the :class:`py8chan.File` objects of all files attached to posts in the thread."""
+        """Returns the :class:`pyvichan.File` objects of all files attached to posts in the thread."""
         # yield all from the topic
         if self.topic.has_file:
             for item in self.topic.all_files():
@@ -249,12 +248,12 @@ class Thread(object):
     # 8chan/vichan does not use semantic urls
     @property
     def semantic_url(self):
-        raise AttributeError( "'py8chan.Thread' object has no attribute 'semantic_url'" )
+        raise AttributeError( "'pyvichan.Thread' object has no attribute 'semantic_url'" )
     
     # 8chan/vichan does not use semantic slugs
     @property
     def semantic_slug(self):
-        raise AttributeError( "'py8chan.Thread' object has no attribute 'semantic_slug'" )
+        raise AttributeError( "'pyvichan.Thread' object has no attribute 'semantic_slug'" )
 
     def __repr__(self):
         extra = ''
