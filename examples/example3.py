@@ -1,7 +1,7 @@
 # credits to Anarov for improved example.py
 import pyvichan
 
-b = pyvichan.Board('b')
+b = pyvichan.Board('v')
 threads = b.get_threads()
 print("Got %i threads" % len(threads))
 first_thread = threads[0]

@@ -1,5 +1,6 @@
 # credits to Anarov for improved example.py
 from __future__ import print_function
+import sys
 import pyvichan
 
 def main():

@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import requests
-
 from . import __version__
 from .thread import Thread
 from .url import Url
 
 # default site URL
-_SITE_URL = '8ch.pl'
+_SITE_URL = '8kun.top'
 
 # cached metadata for boards
 _metadata = {}
@@ -55,7 +54,6 @@ def get_boards(board_name_list, *args, **kwargs):
     if isinstance(board_name_list, basestring):
         board_name_list = board_name_list.split()
     return [Board(name, *args, **kwargs) for name in board_name_list]
-
 
 # TODO: Fix this board lister for vichan
 def get_all_boards(*args, **kwargs):
@@ -262,7 +260,7 @@ class Board(object):
         """Remove everything currently stored in our cache."""
         self._thread_cache.clear()
 
-    # root site URL provided by the user, such as `8ch.pl`
+    # root site URL provided by the user, such as `8kun.top`
     @property
     def site_url(self):
         return self._site_url

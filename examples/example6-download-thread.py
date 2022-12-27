@@ -1,10 +1,11 @@
 # example6-download-thread.py - download json and all full-size images from a thread
 from __future__ import print_function
-import pyvichan
 import sys
 import os
-import requests
 import json
+import requests
+
+import pyvichan
 
 def mkdirs(path):
     """Make directory, if it doesn't exist."""
@@ -43,14 +44,14 @@ def main():
         print("%s - Save the JSON and all images for an 8chan post." % (sys.argv[0]))
         print("\tUsage: %s <board> <thread_id>" % (sys.argv[0]))
         sys.exit(1)
-    
+
     board_name = sys.argv[1]
     thread_id = sys.argv[2]
-    
+
     # grab the first thread on the board by checking first page
     board = pyvichan.Board(board_name)
     thread = board.get_thread(thread_id)
-    
+
     # create folders according to chan.arc standard
     path = os.path.join(os.getcwd(), "8chan", board_name, thread_id)
     images_path = os.path.join(path, "images")
