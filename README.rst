@@ -33,8 +33,8 @@ Usage
 .. code:: python
 
     import pyvichan
-    v = pyvichan.Board('v', '8ch.pl')
-    thread = v.get_thread(462)
+    v = pyvichan.Board('v', '8kun.top')
+    thread = v.get_thread(16959924)
 
     print(thread)
 

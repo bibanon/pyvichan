@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # default site URL
-_SITE_URL = '8ch.pl'
+_SITE_URL = '8kun.top'
 
 # 8chan URL generator. Inherit and override this for derivative classes  (e.g. 420chan API, 8chan/vichan API)
 class Url(object):
@@ -11,7 +11,7 @@ class Url(object):
         self._board = board
         self._protocol = 'https://' if https else 'http://'
         self._site_url = site_url
-        #self._site_url = "8ch.pl"
+        #self._site_url = "8kun.top"
         
         
         # Examples
