@@ -26,4 +26,5 @@ def clean_comment_body(body):
     body = re.sub(r'<a [^>]+>(.+?)</a>', r'\1', body)
     body = body.replace('<br>', '\n')
     body = re.sub(r'<.+?>', '', body)
+    body = body.strip()
     return body

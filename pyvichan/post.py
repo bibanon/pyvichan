@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from datetime import datetime
+import re
 
 from .url import Url
 from .util import clean_comment_body
@@ -22,6 +23,7 @@ class Post(object):
         is_op (bool): Whether this is the OP (first post of the thread)
         timestamp (int): Unix timestamp for this post.
         datetime (:class:`datetime.datetime`): Datetime time of this post.
+        embed_url (string): URL of the embed origin.
         first_file (File): The first file of the post.
         all_files (File): Returns the File objects of all files in the post.
         extra_files (File): Returns the File objects of all extra files in the post, if any.
@@ -93,7 +95,18 @@ class Post(object):
 
     @property
     def datetime(self):
-        return datetime.fromtimestamp(self._data['time'])
+        if self.timestamp is not None:
+            return datetime.fromtimestamp(self.timestamp)
+        else:
+            return None
+
+    @property
+    def embed_url(self):
+        if self._data.get("embed"):
+            url_re = re.search('href="(.*?)"', self._data["embed"])
+            if url_re:
+                return url_re.group(1)
+        return None
 
     @property
     def first_file(self):
