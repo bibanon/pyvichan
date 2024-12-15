@@ -85,7 +85,7 @@ class Board(object):
         threads_per_page (int): How many threads there are on each page.
         site_url (str): User defined site URL of a site using the infinity/Vichan engine, such as '8ch.net' or '8ch.pl'
     """
-    def __init__(self, board_name, https=False, site_url=_SITE_URL ,session=None):
+    def __init__(self, board_name, site_url=_SITE_URL, https=True ,session=None):
         """Creates a :mod:`basc_py4chan.Board` object.
 
         Args:

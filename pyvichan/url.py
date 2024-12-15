@@ -7,7 +7,7 @@ _SITE_URL = '8kun.top'
 # 8chan URL generator. Inherit and override this for derivative classes  (e.g. 420chan API, 8chan/vichan API)
 class Url(object):
     # default value for board in case user wants to query board list
-    def __init__(self, board, https=False, site_url=_SITE_URL):
+    def __init__(self, board, site_url=_SITE_URL, https=True):
         self._board = board
         self._protocol = 'https://' if https else 'http://'
         self._site_url = site_url
