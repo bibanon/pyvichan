@@ -17,7 +17,7 @@ from setuptools import setup
 
 setup(
     name='pyvichan',
-    version='0.4.3',
+    version='0.4.4',
     description=("Python vichan API Wrapper. Based on BASC-py4chan by the Bibliotheca Anonoma"),
     long_description=open('README.rst').read(),
     license=open('LICENSE').read(),
